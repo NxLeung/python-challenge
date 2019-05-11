@@ -47,7 +47,7 @@ correyCount = 0
 liCount = 0
 otoolCount = 0
 
-#create dictionary of bankdata for reference use
+#iterate through data to count total number of votes per candidate on the ballot
 with open(filepath) as csvfile:
     reader = csv.reader(csvfile, delimiter=',')
     header = next(reader)
@@ -66,7 +66,6 @@ votecount = [khanCount, correyCount, liCount, otoolCount]
 totalCount = khanCount+correyCount+liCount+otoolCount
 percent = [khanCount/totalCount*100, correyCount/totalCount*100, liCount/totalCount*100, otoolCount/totalCount*100]
 winner = votecount.index(max(votecount))
-outcome = zip(candidate, percent, votecount)
 
 
 # Output to terminal with formating
@@ -81,28 +80,8 @@ print (f"Winner: {candidate[winner]}")
 print (f"-----------------------------")
 
 
-# Election Results
-# -------------------------
-# Total Votes: 3521001
-# -------------------------
-# Khan: 63.000% (2218231)
-# Correy: 20.000% (704200)
-# Li: 14.000% (492940)
-# O'Tooley: 3.000% (105630)
-# -------------------------
-# Winner: Khan
-# -------------------------
-
-
 # Output to file
 file = open("PyPollAnalysis.txt","w+")
-# file.write(f"Total Months: {len(bankdata)} \n")
-# file.write(f"Total: ${net} \n")
-# file.write(f"Average Change: ${average:,.2f}\n".replace('$-', '-$'))
-# file.write(f"Greatest Increase in Profits: {greatestMonth} (${greatest}) \n".replace('$-', '-$'))
-# file.write(f"Greatest Decrease in Profits: {lowestMonth} (${lowest}) \n".replace('$-', '-$'))
-# file.close() 
-
 file.write (f"Election Results\n")
 file.write (f"-----------------------------\n")
 file.write (f"Total Votes: {totalCount}\n")
